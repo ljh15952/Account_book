@@ -5,19 +5,27 @@ public class Calculator_Model {
 	private int data;
 	private ArrayList<MYObserver> list = new ArrayList<MYObserver>();
 
-	public void registerObserver(MYObserver o) {
+	public void addObserver(MYObserver o) {
 		list.add(o);
-	}
-
-	public void notifyObservers() {
-		for (MYObserver o : list) {
-			o.update(data);
-		}
 	}
 
 	public void add(int num1, int num2) {
 		data = num1 + num2;
-		notifyObservers();
+		for (MYObserver o : list) {
+			o.updateResult(data);
+		}
+	}
+
+	public void setNum(int i) {
+		for (MYObserver o : list) {
+			o.setNum_1_2(i);
+		}
+	}
+
+	public void reset() {
+		for (MYObserver o : list) {
+			o.reset();
+		}
 	}
 
 }
